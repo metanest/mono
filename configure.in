@@ -1208,10 +1208,13 @@ if test x$target_win32 = xno; then
 	dnl *****************************
 	AC_CHECK_LIB(socket, socket, LIBS="$LIBS -lsocket")
 
-	dnl *****************************
-	dnl *** Checks for libinotify ***
-	dnl *****************************
-	AC_CHECK_LIB(inotify, inotify_init, LIBS="$LIBS -linotify")
+	case "$host" in
+		*-*-*freebsd*)
+			dnl *****************************
+			dnl *** Checks for libinotify ***
+			dnl *****************************
+			AC_CHECK_LIB(inotify, inotify_init, LIBS="$LIBS -linotify")
+	esac
 
 	dnl *******************************
 	dnl *** Checks for MSG_NOSIGNAL ***
